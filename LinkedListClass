@@ -1,0 +1,102 @@
+class Node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+
+    def __repr__(self):
+        return repr(self.data)
+        return repr(self.next)
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def __repr__(self):
+        return repr(self.head)
+
+    def insertAtHead(self,data):
+        node = Node()
+        currentHead = self.head
+        node.data = data
+        node.next = currentHead
+        self.head = node
+
+    def insertAtIndex(self,data,i):
+        node = Node()
+        node.data = data
+        currentHead = self.head
+        position = 1
+        while currentHead != None:
+            if position == i:
+                break
+            else:
+                position += 1
+                currentHead = currentHead.next
+        node.next = currentHead.next
+        currentHead.next = node
+
+    def searchElement(self,data):
+        currentHead = self.head
+        position = 0
+        while currentHead.data != data:
+            currentHead = currentHead.next
+            position += 1
+        return (position)
+
+    def searchElementAt(self,i):
+        currentHead = self.head
+        position = 0
+        while position != i:
+            currentHead = currentHead.next
+            position += 1
+        return (currentHead)
+
+    def removeElement(self,data):
+        currentHead = self.head
+        previous = None
+        position = 0
+        while currentHead.data != data:
+            previous = currentHead
+            currentHead = currentHead.next
+            position += 1
+        previous.next = currentHead.next
+
+    def removeElementAt(self,i):
+        currentHead = self.head
+        previous = None
+        position = 0
+        while position != i:
+            previous = currentHead
+            currentHead = currentHead.next
+            position += 1
+        previous.next = currentHead.next
+
+    def printList(self):
+        currentHead = self.head
+        temp = list()
+        while currentHead != None:
+            x = currentHead.data
+            temp.append(x)
+            currentHead = currentHead.next
+        return (temp)
+
+a = LinkedList()
+a.insertAtHead(5)
+a.insertAtHead(7)
+a.insertAtHead(8)
+a.insertAtHead(18)
+a.insertAtHead(26)
+a.printList()
+a.insertAtIndex(10,3)
+a.printList()
+a.searchElement(8)
+a.searchElementAt(4)
+a.removeElement(8)
+a.printList()
+a.insertAtIndex(1,5)
+a.printList()
+a.removeElementAt(4)
+a.printList()
+a.insertAtHead(9)
+a.printList()
+print (len(a))
